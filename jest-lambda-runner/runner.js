@@ -1,32 +1,19 @@
-const fs = require('fs');
-const path = require('path')
-const AWS = require('aws-sdk');
-
-AWS.config.update({region: 'us-east-1'});
+const { fail, pass } = require('create-jest-runner')
 
 const testRunner = async ({ testPath }) => {
-  const { base } = path.parse(testPath)
-  const contents = fs.readFileSync(testPath, 'utf8');
-
-  const lambda = new AWS.Lambda();
-  const { Payload } = await new Promise((resolve, reject) => {
-    lambda.invoke({
-      FunctionName: 'wix-sled-meetup',
-      Payload: JSON.stringify({
-        testFileName: base,
-        testFileContent: contents
-      })
-    }, (err, data) => {
-      if (err) reject(err);
-      else resolve(data);
+  // you can deciee if the test file failed or pass, without running the test itself.... 
+  const start = Date.now()
+  const end = Date.now() + 1000
+  if (Math.random() > 0.5) {
+    return pass({ start, end, test: { path: testPath } });
+  } else {
+    return fail({
+      start,
+      end,
+      test: { path: testPath, errorMessage: `☹️ ☹️ ☹️ because the universe is random ... ☹️ ☹️ ☹️`},
     });
-  })
-  const results = JSON.parse(Payload)
-  try {
-    return results.results.testResults[0]
-  } catch (error) {
-    throw new Error(results.errorMessage + '\n' + ((results.trace || []).join('\n')))
   }
+  // TODO - invoke lmabda and return its results to jest
 };
 
 module.exports = testRunner
