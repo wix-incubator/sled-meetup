@@ -10,7 +10,7 @@ module.exports = async function setupJestProject({testFileName, testFileContent}
   await mkdir(projectRootDir);
   await writeFile(path.resolve(projectRootDir, testFileName), testFileContent);
   await writeFile(path.resolve(projectRootDir, 'jest.config.js'), `
-    module.exports = { setupFilesAfterEnv: ["${path.resolve('.', 'setup-jest-runtime-env.js')}"] }
+    module.exports = {}
   `);
   return projectRootDir
 }
