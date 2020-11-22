@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path')
 const AWS = require('aws-sdk');
 
+// TODO - make sure your AWS credentials file exist locally and that the region is correct
 AWS.config.update({region: 'us-east-1'});
 
 const testRunner = async ({ testPath }) => {
