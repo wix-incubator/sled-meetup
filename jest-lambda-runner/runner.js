@@ -1,7 +1,7 @@
 const { fail, pass } = require('create-jest-runner')
 
 const testRunner = async ({ testPath }) => {
-  // you can deciee if the test file failed or pass, without running the test itself.... 
+  // you can decide if the test file failed or pass, without running the test itself.... 
   const start = Date.now()
   const end = Date.now() + 1000
   if (Math.random() > 0.5) {

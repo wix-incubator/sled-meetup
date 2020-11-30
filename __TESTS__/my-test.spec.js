@@ -1,7 +1,7 @@
-test('should pass', async () => {
+test('should pass', () => {
   expect('🛷').toBe('🛷')
 })
 
-test('should fail', async () => {
+test('should fail', () => {
   expect('🦄').toBe('🛷')
 })
