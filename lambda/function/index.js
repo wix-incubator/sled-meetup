@@ -1,5 +1,4 @@
-// TODO - uncomment in step 3
-// const { runCLI } = require('jest');
+const { runCLI } = require('jest');
 const setupJestLocalProject = require('./setup-jest-local-project')
 
 exports.handler = async (event) => {

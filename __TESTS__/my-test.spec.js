@@ -1,7 +1,7 @@
-test('should pass on remote', async () => {
+test('should pass on remote', () => {
   expect('🛷').toBe('🛷')
 })
 
-test('should fail on remote', async () => {
+test('should fail on remote', () => {
   expect('🦄').toBe('🛷')
 })
